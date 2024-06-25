@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { SharedModule } from '../../shared/shared/shared.module';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { StoreService } from '../../../@core/services/store.service';
 
 @Component({
   selector: 'app-componente-filho',
@@ -12,10 +13,11 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class ComponenteFilhoComponent implements OnInit {
   @Input() name?: string;
   resourceForm!: FormGroup;
-  @Input() funcaoPai!: Function;
-  @Output() eventoFilho = new EventEmitter<string>();
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder, 
+    private storeService: StoreService
+  ) {}
 
   ngOnInit(): void {
     this.resourceForm = this.formBuilder.group({
@@ -23,13 +25,9 @@ export class ComponenteFilhoComponent implements OnInit {
     });
   }
 
-  funcaoFilho() {
+  setStoreData() {
     const name = this.resourceForm.get('name')?.value;
-    this.funcaoPai(name);
+    this.storeService.setData(`${name} - Seta os dados na Store e dispara evento`);
   }
 
-  funcaoFilhoParaPai() {
-    const name = this.resourceForm.get('name')?.value;
-    this.eventoFilho.emit(`${name} - Emite Filho pro Pai`);
-  }
 }
