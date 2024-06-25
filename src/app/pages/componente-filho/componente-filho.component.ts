@@ -28,7 +28,7 @@ export class ComponenteFilhoComponent implements OnInit {
     this.funcaoPai(name);
   }
 
-  funcaoPaiParaFilho() {
+  funcaoFilhoParaPai() {
     const name = this.resourceForm.get('name')?.value;
     this.eventoFilho.emit(`${name} - Emite Filho pro Pai`);
   }
