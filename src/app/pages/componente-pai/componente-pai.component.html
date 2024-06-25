@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-10">
+          <app-componente-filho
+            [name]="name"
+            [funcaoPai]="funcaoPai.bind(this)"
+            (eventoFilho)="funcaoFilho($event)"
+          ></app-componente-filho>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
