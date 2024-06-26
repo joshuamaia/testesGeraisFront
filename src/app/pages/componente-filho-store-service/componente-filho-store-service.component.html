@@ -1,0 +1,17 @@
+<form [formGroup]="resourceForm">
+  <div class="row">
+    <div class="col-10">
+      <input
+        type="text"
+        class="form-control"
+        formControlName="name"
+        value="Componente Filho"
+      />
+    </div>
+    <div class="col-2">
+      <button (click)="setStoreData()" class="btn btn-primary">
+        Seta dados e exibe modal
+      </button>
+    </div>
+  </div>
+</form>
